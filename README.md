@@ -1,1 +1,1 @@
-# chest-playing-agents
+# chess-playing-agents
