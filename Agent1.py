@@ -22,19 +22,22 @@ def evaluate_defensive(board):
             king_file = chess.square_file(king_square)
             king_rank = chess.square_rank(king_square)
 
-            # Reward kings that remain near their home rank
             home_rank = 0 if color == chess.WHITE else 7
 
-            if king_rank == home_rank:
-                score += sign * 30
+            # Reward a king in a typical castled position
+            if king_rank == home_rank and king_file in [2, 6]:
+                score += sign * 60
 
-            # Reward friendly pawns protecting the king
+            # Penalize an exposed king in the centre
+            if king_file in [3, 4] and king_rank != home_rank:
+                score -= sign * 50
+
+            # Reward friendly pawns defending the king's square
             for square in board.attackers(color, king_square):
                 piece = board.piece_at(square)
 
                 if piece and piece.piece_type == chess.PAWN:
                     score += sign * 15
-
         # 3. Pawn structure
         pawns = board.pieces(chess.PAWN, color)
 
