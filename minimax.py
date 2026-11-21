@@ -1,7 +1,6 @@
 import chess
 import math
 
-
 PIECE_VALUES = {
     chess.PAWN: 100,
     chess.KNIGHT: 320,
@@ -11,24 +10,19 @@ PIECE_VALUES = {
     chess.KING: 0
 }
 
-
+# evaluates the material balance from White's perspective."""
 def evaluate_board(board):
-    """Evaluate the material balance from White's perspective."""
-
     score = 0
 
     for piece_type, value in PIECE_VALUES.items():
         white_count = len(board.pieces(piece_type, chess.WHITE))
         black_count = len(board.pieces(piece_type, chess.BLACK))
-
         score += value * (white_count - black_count)
-
+    
     return score
 
-
+# searches possible moves using Minimax and Alpha Beta pruning
 def minimax(board, depth, alpha, beta, maximizing, evaluate):
-    """Search possible moves using Minimax and Alpha Beta pruning."""
-
     if board.is_game_over(claim_draw=True):
         outcome = board.outcome(claim_draw=True)
 
@@ -80,14 +74,10 @@ def minimax(board, depth, alpha, beta, maximizing, evaluate):
 
         return best_score
 
-
+# chooses the best legal move for the current player
 def get_best_move(board, depth, evaluate=evaluate_board):
-    """Choose the best legal move for the current player."""
-
     best_move = None
-
     maximizing = board.turn == chess.WHITE
-
     best_score = -math.inf if maximizing else math.inf
 
     for move in board.legal_moves:

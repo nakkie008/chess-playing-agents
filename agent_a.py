@@ -1,7 +1,5 @@
 import chess
-
 from minimax import get_best_move, PIECE_VALUES
-
 
 def evaluate_defensive(board):
     score = 0

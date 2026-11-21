@@ -2,15 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 import chess
 
-from Agent1 import defensive_move
-
-try:
-    from aggressive_agent import aggressive_move
-    AGGRESSIVE_READY = True
-except ImportError:
-    aggressive_move = defensive_move
-    AGGRESSIVE_READY = False
-
+from agent_a import defensive_move
+from agent_b import aggressive_move
 
 class ChessGUI:
     def __init__(self, root):
@@ -203,7 +196,6 @@ class ChessGUI:
 
         if self.mode.get() == "Defensive vs Aggressive":
             self.schedule_ai_move()
-
 
 if __name__ == "__main__":
     root = tk.Tk()
