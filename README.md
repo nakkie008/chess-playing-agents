@@ -2,7 +2,7 @@
 
 This project implements two chess agents share one Minimax search with alpha-beta pruning but use different evaluation strategies. It includes a Tkinter GUI and an agent-vs-agent match harness.
 
-## Authors and agents
+## Agents and Authors
 
 | Agent | Strategy | File | Built by |
 |---|---|---|---|
@@ -11,7 +11,7 @@ This project implements two chess agents share one Minimax search with alpha-bet
 
 The search (`minimax.py`), engine helpers, GUI and match harness are shared work.
 
-**How the strategies differ:** Agent A looks inward: it rewards a castled king with a pawn shield, protected pieces, developed minor pieces and sound pawns, and measures no activity. Agent B looks outward: it rewards mobile pieces, attacks on enemy pieces, advanced pawns, pressure around the enemy king and giving check, and has no castling or pawn-shield terms. Both start from the same material count.
+Agent A looks inward: it rewards a castled king with a pawn shield, protected pieces, developed minor pieces and sound pawns, and measures no activity. Agent B looks outward: it rewards mobile pieces, attacks on enemy pieces, advanced pawns, pressure around the enemy king and giving check, and has no castling or pawn-shield terms. Both start from the same material count.
 
 ## Requirements
 
@@ -31,13 +31,13 @@ pip install -r requirements.txt
 python main.py
 ```
 
-- **Game mode:** Human vs Defensive, Human vs Aggressive, Defensive vs Aggressive (Defensive plays White). Changing the mode starts a new game.
+- **Game Mode:** Human vs Defensive, Human vs Aggressive, Defensive vs Aggressive (Defensive plays White). Changing the mode starts a new game.
 - **Play as:** White or Black (human modes). The board flips when you play Black.
 - **Depth:** search depth (1-4 plies) for each agent, changeable at any time; higher is stronger but slower.
 - **Moving:** click a piece, then its destination. Click another of your pieces to switch selection. Castle by moving the king two squares. A dialog asks which piece to promote to.
-- **Agent vs agent:** moves play automatically; **Pause/Resume** and **Step** (one move at a time) are available. The last move is highlighted.
+- **Agent vs Agent:** moves play automatically; **Pause/Resume** and **Step** (one move at a time) are available. The last move is highlighted.
 
-**Match harness:**
+**Match Harness:**
 
 ```
 python match_harness.py                    # Defensive vs Aggressive, 20 games, depth 2
@@ -49,7 +49,7 @@ Options: `--games`, `--depth`, `--opening-plies` (random opening moves per game,
 
 The CSV has one row per game: `Game, White, Black, Result, Winner, Termination, Plies, White_sec, Black_sec, Moves` (`Moves` is the SAN move list, including the random opening).
 
-## Project structure
+## Project Structure
 
 | File | Purpose |
 |---|---|
@@ -66,3 +66,6 @@ The CSV has one row per game: `Game, White, Black, Result, Winner, Termination, 
 
 - `Documentation.docx`: minimax, alpha-beta pruning and the strategy comparison
 - `Match_Report.docx`: agent-vs-agent results with analysis (re-run the match with the updated code and refresh the numbers before submitting)
+
+# AI Usage
+AI was used to check for inconsistencies in our original code logic and asisst in the creation of our `match_harness.py`, README.md and Report.docx files.
