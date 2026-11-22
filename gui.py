@@ -25,7 +25,7 @@ GLYPHS = {
     "P": "\u2659", "N": "\u2658", "B": "\u2657", "R": "\u2656", "Q": "\u2655", "K": "\u2654",
     "p": "\u265f", "n": "\u265e", "b": "\u265d", "r": "\u265c", "q": "\u265b", "k": "\u265a",
 }
-LIGHT, DARK, SELECTED, LAST_MOVE = "#EEEED2", "#769656", "#F6F669", "#BACA44"
+LIGHT, DARK, SELECTED, LAST_MOVE = "#F0D9B5", "#70452D", "#E8C46A", "#D4A76A"
 MIN_DEPTH, MAX_DEPTH = 1, 4
 
 # width of each board square in text units, a larger number makes the board wider
@@ -170,9 +170,50 @@ class ChessGUI:
     # ---------- drawing ----------
 
     # draws the board, flipped when the human plays black
+    
     def draw_board(self):
-        flipped = (not self.is_agent_vs_agent()) and self.human_color() == chess.BLACK
+        flipped = (
+            not self.is_agent_vs_agent()
+            and self.human_color() == chess.BLACK
+        )
 
+        # Create coordinate labels once
+        if not hasattr(self, "coordinate_labels"):
+            self.coordinate_labels = {
+                "top": [],
+                "bottom": [],
+                "left": [],
+                "right": []
+            }
+
+            for i in range(8):
+                for side in ("top", "bottom", "left", "right"):
+                    label = tk.Label(
+                        self.board_frame,
+                        font=("Arial", 11, "bold"),
+                        padx=5,
+                        pady=3
+                    )
+                    self.coordinate_labels[side].append(label)
+
+        # Update labels to match the board orientation
+        files = "hgfedcba" if flipped else "abcdefgh"
+        ranks = "12345678" if flipped else "87654321"
+
+        for i in range(8):
+            self.coordinate_labels["top"][i].config(text=files[i])
+            self.coordinate_labels["top"][i].grid(row=0, column=i + 1)
+
+            self.coordinate_labels["bottom"][i].config(text=files[i])
+            self.coordinate_labels["bottom"][i].grid(row=9, column=i + 1)
+
+            self.coordinate_labels["left"][i].config(text=ranks[i])
+            self.coordinate_labels["left"][i].grid(row=i + 1, column=0)
+
+            self.coordinate_labels["right"][i].config(text=ranks[i])
+            self.coordinate_labels["right"][i].grid(row=i + 1, column=9)
+
+        # Draw the chess pieces
         for rank in range(8):
             for file in range(8):
                 square = chess.square(file, rank)
@@ -186,13 +227,17 @@ class ChessGUI:
                         command=lambda s=square: self.click_square(s),
                     )
 
-                row = rank if flipped else 7 - rank
-                col = 7 - file if flipped else file
+                row = (rank if flipped else 7 - rank) + 1
+                col = (7 - file if flipped else file) + 1
+
                 self.buttons[square].grid(row=row, column=col)
 
                 color = LIGHT if (rank + file) % 2 else DARK
 
-                if self.last_move and square in (self.last_move.from_square, self.last_move.to_square):
+                if self.last_move and square in (
+                    self.last_move.from_square,
+                    self.last_move.to_square
+                ):
                     color = LAST_MOVE
 
                 if square == self.selected_square:
@@ -200,7 +245,9 @@ class ChessGUI:
 
                 piece = self.board.piece_at(square)
                 symbol = GLYPHS[piece.symbol()] if piece else ""
+
                 self.buttons[square].config(text=symbol, bg=color)
+
 
     # updates the status line with the turn, check, thinking state or final result
     def update_status(self):
