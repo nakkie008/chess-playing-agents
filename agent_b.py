@@ -1,3 +1,5 @@
+# Student ID: 620139183
+
 import chess
 from minimax import get_best_move, evaluate_board
 

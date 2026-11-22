@@ -65,7 +65,7 @@ The CSV has one row per game: `Game, White, Black, Result, Winner, Termination, 
 ## Deliverables
 
 - `Documentation.docx`: minimax, alpha-beta pruning and the strategy comparison
-- `Match_Report.docx`: agent-vs-agent results with analysis (re-run the match with the updated code and refresh the numbers before submitting)
+- `Match_Report.docx`: agent-vs-agent results with analysis
 
 # AI Usage
 AI was used to check for inconsistencies in our original code logic and asisst in the creation of our `match_harness.py`, README.md and Report.docx files.
