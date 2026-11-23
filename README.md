@@ -6,8 +6,8 @@ This project implements two chess agents share one Minimax search with alpha-bet
 
 | Agent | Strategy | File | Built by |
 |---|---|---|---|
-| Agent A | Defensive: king safety, piece safety, development, pawn structure | `agent_a.py` | [620154625] |
-| Agent B | Aggressive: piece activity, attacks, pawn advancement, pressure on the enemy king | `agent_b.py` | [620139183] |
+| Agent A | Defensive: king safety, piece safety, development, pawn structure | `agent_a.py` | 620154625 |
+| Agent B | Aggressive: piece activity, attacks, pawn advancement, pressure on the enemy king | `agent_b.py` | 620139183 |
 
 The search (`minimax.py`), engine helpers, GUI and match harness are shared work.
 
