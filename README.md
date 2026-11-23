@@ -68,4 +68,4 @@ The CSV has one row per game: `Game, White, Black, Result, Winner, Termination, 
 - `Match_Report.docx`: agent-vs-agent results with analysis
 
 ## AI Usage
-AI was used to check for inconsistencies in our original code logic and asisst in the creation of our `match_harness.py`, `README.md` and `Match_Report.docx` files.
+AI was used to check for inconsistencies in our original code logic and asisst in the creation of our `match_harness.py`, `README.md` and `Match_Report.pdf` files.
